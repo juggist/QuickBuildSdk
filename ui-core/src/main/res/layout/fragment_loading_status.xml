@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/loading_status_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_status"
+        tools:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="25mm"
+        android:layout_marginRight="25mm"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="14mm" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_status"
+            app:cardBackgroundColor="@android:color/holo_red_dark"
+            app:cardCornerRadius="20mm"
+            app:cardElevation="0dp"
+            android:layout_width="150mm"
+            android:layout_height="40mm"
+            android:layout_marginTop="50mm">
+
+            <TextView
+                android:id="@+id/tv_retry"
+                android:layout_width="match_parent"
+                android:layout_height="40mm"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="16mm" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_loading"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
+        tools:ignore="MissingDefaultResource"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="100mm"
+            android:layout_height="100mm" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

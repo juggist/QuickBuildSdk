@@ -1,0 +1,4 @@
+include ':ui-core'
+include ':sdk'
+include ':app'
+rootProject.name = "BaseLibrary"

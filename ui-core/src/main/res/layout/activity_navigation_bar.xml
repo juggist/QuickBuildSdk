@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/fake_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60mm" />
+
+    <FrameLayout
+        android:id="@+id/navigation_bar_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fake_bar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60mm">
+
+        <ImageView
+            android:id="@+id/left_back"
+            android:layout_width="60mm"
+            android:layout_height="60mm"
+            android:padding="12mm"
+            android:src="@mipmap/ic_black_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0mm"
+            android:layout_height="60mm"
+            android:layout_marginLeft="20mm"
+            android:layout_marginRight="20mm"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:textSize="30mm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/left_back"
+            app:layout_constraintRight_toLeftOf="@+id/right_button"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题" />
+
+        <ImageView
+            android:id="@+id/right_button"
+            android:layout_width="60mm"
+            android:layout_height="60mm"
+            android:padding="12mm"
+            android:src="@mipmap/ic_black_back"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

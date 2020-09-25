@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.juggist.uicore">
+
+    <application>
+        <activity
+            android:name=".activity.TabActivity"
+            android:label="@string/title_activity_tab"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.BottomNavigationActivity"
+            android:label="@string/title_activity_bottom_navigation" />
+    </application>
+
+</manifest>
