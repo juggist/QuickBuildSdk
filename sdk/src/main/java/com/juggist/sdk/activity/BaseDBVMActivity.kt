@@ -18,15 +18,15 @@ import java.lang.reflect.ParameterizedType
  */
 abstract class BaseDBVMActivity<VM : BaseViewModel,DB : ViewDataBinding> (private val layoutId: Int) : AppCompatActivity() {
     protected val TAG = this.javaClass.name
-    protected lateinit var rootDB: DB
+    protected lateinit var rootChildDataBind: DB//派生类传入的databind类型，在派生类中，必须用此对象进行数据绑定(rootChildDataBind.xx = viewModel)
     protected lateinit var rootView: View
-    protected lateinit var rootVM: VM
+    protected lateinit var viewModel: VM //派生类的viewmodel必须逐层继承
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        rootDB = DataBindingUtil.setContentView(this, layoutId)
-        rootDB.lifecycleOwner = this
-        rootVM = ViewModelProvider(this).get(getVmClazz(this))
-        rootView = rootDB.root
+        rootChildDataBind = DataBindingUtil.setContentView(this, layoutId)
+        rootChildDataBind.lifecycleOwner = this
+        viewModel = ViewModelProvider(this).get(getVmClazz(this))
+        rootView = rootChildDataBind.root
     }
 
     private fun <VM> getVmClazz(obj: Any): VM {

@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
 import com.juggist.sdk.activity.BaseDBVMActivity
-import com.juggist.sdk.viewmodel.BaseViewModel
 import com.juggist.uicore.R
 import com.juggist.uicore.databinding.ActivityNavigationBarDbvmBinding
 import com.juggist.uicore.viewmodel.NavigationViewModel
@@ -31,18 +29,19 @@ import kotlinx.android.synthetic.main.activity_navigation_bar_dbvm.left_back
  *
  *
  */
-abstract class NavigationBarDBVMActivity<VM : BaseViewModel,DB : ViewDataBinding>(private val childLayoutId: Int, private val fullScreen:Boolean = false) : BaseDBVMActivity<VM, ActivityNavigationBarDbvmBinding>(R.layout.activity_navigation_bar_dbvm) {
-    protected lateinit var childDB : DB
-    protected lateinit var childView : View
-    private lateinit var navigationVM : NavigationViewModel
+abstract class NavigationBarDBVMActivity<VM : NavigationViewModel,DB : ViewDataBinding>(private val childLayoutId: Int, private val fullScreen:Boolean = false) : BaseDBVMActivity<VM, ActivityNavigationBarDbvmBinding>(R.layout.activity_navigation_bar_dbvm) {
+    protected lateinit var navChildDataBind : DB
+    protected lateinit var navChildView : View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        childDB = DataBindingUtil.inflate(LayoutInflater.from(this),childLayoutId,null,false)
-        childDB.lifecycleOwner = this
-        childView = childDB.root
+        navChildDataBind = DataBindingUtil.inflate(LayoutInflater.from(this),childLayoutId,null,false)
+        navChildDataBind.lifecycleOwner = this
+        navChildView = navChildDataBind.root
+
         if(navigation_bar_content_view.childCount > 0)
             navigation_bar_content_view.removeAllViews()
-        navigation_bar_content_view.addView(childView)
+        navigation_bar_content_view.addView(navChildView)
+
         initListener()
         initData()
     }
@@ -56,14 +55,12 @@ abstract class NavigationBarDBVMActivity<VM : BaseViewModel,DB : ViewDataBinding
         navigation_bar.setBackgroundColor(if(fullScreen) Color.TRANSPARENT else Color.WHITE)
         fake_bar.visibility = if (fullScreen) View.GONE else View.VISIBLE
 
-        navigationVM = ViewModelProvider(this).get(NavigationViewModel::class.java)
-        rootDB.navigationViewModel = navigationVM
-
+        rootChildDataBind.navigationViewModel = viewModel
     }
 
     //设置标题
     fun setNavigationTitie(title:String){
-        navigationVM.title.postValue(title)
+        viewModel.setNavigationTitie(title)
     }
 
 }

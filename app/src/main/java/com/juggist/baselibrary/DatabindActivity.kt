@@ -87,9 +87,7 @@ class DatabindActivity:ListActivity<String>(){
         lifecycleScope.launch(Dispatchers.Main){
             delay(3000)
 //            hideLoading()
-            hideLoading("空数据","重试") {
-                startLoadingAction()
-            }
+            hideLoading("空数据",true)
         }
     }
 

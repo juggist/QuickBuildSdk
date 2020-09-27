@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tv.text = BuildConfig.APPLICATION_ID
         tv.setOnClickListener {
-            startActivity(Intent(this,TwoActivity::class.java));
+            startActivity(Intent(this,MyLoadingStatusActivity::class.java));
         }
         RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
             .subscribe {

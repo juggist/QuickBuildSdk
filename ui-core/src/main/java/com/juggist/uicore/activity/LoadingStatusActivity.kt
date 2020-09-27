@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
 import com.juggist.uicore.R
@@ -53,25 +52,30 @@ abstract class LoadingStatusActivity constructor(private val childLayoutId: Int,
         hideLoading(false)
     }
 
-    fun hideLoading(title: String, block: () -> Unit) {
-        hideLoading(title, 0, "重试", block)
+    fun hideLoading(showStatus: Boolean) {
+        hideLoading("",showStatus)
     }
 
-    fun hideLoading(title: String, btnStr: String, block: () -> Unit) {
-        hideLoading(title, 0, btnStr, block)
+    fun hideLoading(title: String,showStatus: Boolean) {
+        hideLoading(title,  "",showStatus)
     }
 
-    fun hideLoading(title: String, icon: Int, btnStr: String, block: () -> Unit) {
-        hideLoading(true)
+    fun hideLoading(title: String, btnStr: String, showStatus: Boolean) {
+        hideLoading(title, 0, btnStr,showStatus)
+    }
+
+    fun hideLoading(title: String, icon: Int, btnStr: String, showStatus: Boolean) {
+
         tv_status.text = title
         Glide.with(this).load(icon).into(iv_status)
         tv_retry.text = btnStr
-        tv_retry.setOnClickListener { showLoading();block.invoke() }
-    }
+        tv_retry.setOnClickListener {
+            showLoading()
+            startLoadingAction()
+        }
 
-    fun hideLoading(showEmpty: Boolean) {
-        loading_status_content_view.visibility = if (showEmpty) FrameLayout.GONE else FrameLayout.VISIBLE
-        ll_status.visibility = if (showEmpty) FrameLayout.VISIBLE else FrameLayout.GONE
+        loading_status_content_view.visibility = if (showStatus) FrameLayout.GONE else FrameLayout.VISIBLE
+        ll_status.visibility = if (showStatus) FrameLayout.VISIBLE else FrameLayout.GONE
         cv_loading.visibility = FrameLayout.GONE
         Glide.with(this).load(0).into(iv_loading)
     }
