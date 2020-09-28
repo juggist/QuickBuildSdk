@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MyLoadingStatusActivity"></activity>
+        <activity android:name=".MyBottomNavActivity"></activity>
         <activity android:name=".DBVMActivity" />
         <activity android:name=".TwoActivity" />
         <activity android:name=".DatabindActivity" />
