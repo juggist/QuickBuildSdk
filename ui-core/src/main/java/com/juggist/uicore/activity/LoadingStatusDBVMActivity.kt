@@ -21,10 +21,13 @@ abstract class LoadingStatusDBVMActivity<VM:LoadingStatusViewModel,DB : ViewData
     protected lateinit var loadingChildView : View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //初始化子view的databind
         loadingChildDataBind = DataBindingUtil.inflate(LayoutInflater.from(this),childLayoutId,null,false)
         loadingChildDataBind.lifecycleOwner = this
+        //通过databind,获取子view对象
         loadingChildView = loadingChildDataBind.root
 
+        //把子view添加到当前父容器中
         if (loading_status_content_view.childCount > 0) {
             loading_status_content_view.removeAllViews()
         }
@@ -34,6 +37,7 @@ abstract class LoadingStatusDBVMActivity<VM:LoadingStatusViewModel,DB : ViewData
     }
 
     private fun initData(){
+        //通过databind绑定数据(loaidng&status的数据)
         navChildDataBind.vm = viewModel
         if(showLoading){
             showLoading()
@@ -86,8 +90,4 @@ abstract class LoadingStatusDBVMActivity<VM:LoadingStatusViewModel,DB : ViewData
      */
     abstract fun startLoadingAction()
 
-}
- class MyHandler{
-    fun click(view : View) {
-    }
 }

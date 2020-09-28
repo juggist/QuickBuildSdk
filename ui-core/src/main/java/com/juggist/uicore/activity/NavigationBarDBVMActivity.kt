@@ -34,10 +34,13 @@ abstract class NavigationBarDBVMActivity<VM : NavigationViewModel,DB : ViewDataB
     protected lateinit var navChildView : View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //初始化子view的databind
         navChildDataBind = DataBindingUtil.inflate(LayoutInflater.from(this),childLayoutId,null,false)
         navChildDataBind.lifecycleOwner = this
+        //通过databind,获取子view对象
         navChildView = navChildDataBind.root
 
+        //把子view添加到当前父容器中
         if(navigation_bar_content_view.childCount > 0)
             navigation_bar_content_view.removeAllViews()
         navigation_bar_content_view.addView(navChildView)
@@ -55,6 +58,7 @@ abstract class NavigationBarDBVMActivity<VM : NavigationViewModel,DB : ViewDataB
         navigation_bar.setBackgroundColor(if(fullScreen) Color.TRANSPARENT else Color.WHITE)
         fake_bar.visibility = if (fullScreen) View.GONE else View.VISIBLE
 
+        //通过databind绑定数据(导航栏上的信息,未来可拓展)
         rootChildDataBind.navigationViewModel = viewModel
     }
 
