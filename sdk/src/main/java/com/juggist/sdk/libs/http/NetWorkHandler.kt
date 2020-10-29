@@ -6,7 +6,7 @@ import kotlinx.coroutines.*
 /**
  * 发起网络请求
  */
-object NetWorkHanlder {
+object NetWorkHandler {
 
     fun <T> doJob(scope: CoroutineScope, block: suspend CoroutineScope.() -> T, listener: NetWorkListener<T>):Job {
         return doJob(scope, false ,block, listener)
@@ -22,21 +22,21 @@ object NetWorkHanlder {
             if (showLoading) {
                 NetWorkManager.getConfig().loadingProvider?.showLoading()
             }
-            listener?.onStart()
+            listener.onStart()
             //请求过程异步实现
             val result = withContext(Dispatchers.IO) {
                 delay(3000)
                 block.invoke(this)
             }
             if (result is T) {
-                listener?.onSuccess(result)
+                listener.onSuccess(result)
             } else {
-                listener?.onFail(-99, "<T> type is not match")
+                listener.onFail(-99, "<T> type is not match")
             }
             if (showLoading) {
                 NetWorkManager.getConfig().loadingProvider?.dismissLoading()
             }
-            listener?.onFinish()
+            listener.onFinish()
         }
     }
 }
