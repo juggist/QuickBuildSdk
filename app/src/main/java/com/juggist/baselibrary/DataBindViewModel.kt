@@ -38,7 +38,7 @@ class DataBindViewModel : BaseViewModel() {
 //
 //        })
         NetWorkHandler.doJob(viewModelScope,{
-            apiService.getCourseScheduleByDate(parseBody(hashMapOf("startDate" to "2020-11-7","endDate" to "2020-11-15")), hashMapOf())
+            apiService.getCourseScheduleByDate(parseBody(hashMapOf("startDate" to "2020-11-7","endDate" to "2020-11-15")), hashMapOf("ticket" to "852e6cde69824177935cfd497c28aedd","Content-Type" to "application/json"))
         },object :NetWorkListener<ResultTest>{
             override fun onSuccess(result: ResultTest) {
             }

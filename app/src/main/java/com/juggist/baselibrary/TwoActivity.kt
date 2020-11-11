@@ -20,7 +20,7 @@ class TwoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_two)
-        supportFragmentManager.beginTransaction().replace(R.id.parent,MyFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.parent,TestFragment()).commit()
 //        val vm = ViewModelProvider(this).get(TwoViewModel::class.java)
 
     }

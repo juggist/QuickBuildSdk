@@ -24,15 +24,16 @@ abstract class BaseDBVMFragment<VM: BaseViewModel,DB: ViewDataBinding>(val layou
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dataBinding = DataBindingUtil.setContentView(requireActivity(),layoutId)
+        dataBinding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()),layoutId,null,false)
         dataBinding.lifecycleOwner = this
         rootView = dataBinding.root
+        viewModel = ViewModelProvider(this).get(getVmClazz(this))
         return rootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(getVmClazz(this))
+
     }
 
     private fun <VM> getVmClazz(obj: Any): VM {

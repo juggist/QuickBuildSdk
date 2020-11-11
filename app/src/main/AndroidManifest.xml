@@ -18,9 +18,9 @@
         <activity android:name=".MyLoadingStatusActivity"></activity>
         <activity android:name=".MyBottomNavActivity"></activity>
         <activity android:name=".DBVMActivity" />
-        <activity android:name=".TwoActivity" />
+<!--        <activity android:name=".TwoActivity" />-->
         <activity android:name=".DatabindActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".TwoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
