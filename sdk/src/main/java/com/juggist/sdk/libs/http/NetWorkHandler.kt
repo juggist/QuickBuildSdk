@@ -25,7 +25,6 @@ object NetWorkHandler {
             listener.onStart()
             //请求过程异步实现
             val result = withContext(Dispatchers.IO) {
-                delay(3000)
                 block.invoke(this)
             }
             if (result is T) {
