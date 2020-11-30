@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="navigationViewModel"
             type="com.juggist.uicore.viewmodel.NavigationViewModel" />
@@ -18,7 +20,8 @@
         <View
             android:id="@+id/fake_bar"
             android:layout_width="match_parent"
-            android:layout_height="60mm" />
+            android:layout_height="34mm"
+            android:visibility="@{navigationViewModel.showNavigation?View.VISIBLE:View.GONE}" />
 
         <FrameLayout
             android:id="@+id/navigation_bar_content_view"
@@ -29,13 +32,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/navigation_bar"
             android:layout_width="match_parent"
-            android:layout_height="60mm">
+            android:layout_height="34mm"
+            android:visibility="@{navigationViewModel.showNavigation?View.VISIBLE:View.GONE}">
 
             <ImageView
                 android:id="@+id/left_back"
-                android:layout_width="60mm"
-                android:layout_height="60mm"
-                android:padding="12mm"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="12mm"
+                android:paddingRight="12mm"
+                android:scaleType="center"
                 android:src="@mipmap/ic_black_back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -52,23 +58,32 @@
                 android:lines="1"
                 android:text="@{navigationViewModel.title}"
                 android:textColor="@android:color/black"
-                android:textSize="30mm"
+                android:textSize="16mm"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/left_back"
-                app:layout_constraintRight_toLeftOf="@+id/right_button"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tool:text="测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题" />
+                tool:text="标题" />
 
             <ImageView
                 android:id="@+id/right_button"
                 android:layout_width="60mm"
                 android:layout_height="60mm"
                 android:padding="12mm"
-                android:src="@mipmap/ic_black_back"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layoutRight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintRight_toRightOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

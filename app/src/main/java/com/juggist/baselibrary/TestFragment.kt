@@ -7,5 +7,8 @@ class TestFragment : LoadingStatusDBVMFragment<TestVM,TestFragmentBinding>(R.lay
     override fun startLoadingAction() {
     }
 
+    override fun initConfiguration() {
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.juggist.sdk.libs.http
 
+import android.util.Log
 import com.cqteam.networklib.NetWorkManager
 import kotlinx.coroutines.*
 
@@ -24,14 +25,20 @@ object NetWorkHandler {
             }
             listener.onStart()
             //请求过程异步实现
-            val result = withContext(Dispatchers.IO) {
-                block.invoke(this)
+            try {
+                val result = withContext(Dispatchers.IO) {
+                    block.invoke(this)
+                }
+                if (result is T) {
+                    listener.onSuccess(result)
+                } else {
+                    listener.onFail(-99, "<T> type is not match")
+                }
+            }catch (e:Exception){
+                Log.e("NetWorkHttp","请求失败 Exception : $e")
+                listener.onFail(-100, "服务器异常")
             }
-            if (result is T) {
-                listener.onSuccess(result)
-            } else {
-                listener.onFail(-99, "<T> type is not match")
-            }
+
             if (showLoading) {
                 NetWorkManager.getConfig().loadingProvider?.dismissLoading()
             }

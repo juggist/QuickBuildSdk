@@ -1,8 +1,11 @@
 package com.juggist.uicore.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import com.juggist.sdk.viewmodel.BaseViewModel
+import com.juggist.sdk.utils.UnPeekLiveData
 
-class ListRefreshViewModel<T> :BaseViewModel() {
-    val listData:MutableLiveData<List<T>> = MutableLiveData(emptyList())
+open class ListRefreshViewModel:LoadingStatusViewModel() {
+    val refreshFinish : UnPeekLiveData<Boolean> = UnPeekLiveData(false)
+    val refreshFinishNoMoreData : UnPeekLiveData<Boolean> = UnPeekLiveData(false)
+    val loadMoreFinish : UnPeekLiveData<Boolean> = UnPeekLiveData(false)
+    val loadMoreFinishNoMoreData : UnPeekLiveData<Boolean> = UnPeekLiveData(false)
+
 }

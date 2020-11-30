@@ -101,7 +101,7 @@ ext {
     GITHUB_REPO_PATH = "/Users/lufeisong/Documents/juggistAndroidSdk/sdk"
     PUBLISH_GROUP_ID = 'com.juggist'
     PUBLISH_ARTIFACT_ID = 'sdk'
-    PUBLISH_VERSION = '1.0.4'
+    PUBLISH_VERSION = '1.0.8'
 }
 
 uploadArchives {

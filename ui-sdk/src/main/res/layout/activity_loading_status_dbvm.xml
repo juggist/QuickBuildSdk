@@ -27,7 +27,7 @@
 
         <LinearLayout
             android:id="@+id/ll_status"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="25mm"
@@ -38,7 +38,9 @@
             tools:visibility="visible">
 
             <ImageView
+                android:visibility="@{vm.statusResVisiable ? View.VISIBLE : View.GONE }"
                 android:id="@+id/iv_status"
+                android:background="@mipmap/ic_empty_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -53,22 +55,23 @@
                 android:textSize="14mm" />
 
             <androidx.cardview.widget.CardView
+                android:visibility="@{vm.statusBtnVisiable ? View.VISIBLE : View.GONE}"
                 android:id="@+id/cv_status"
                 android:layout_width="150mm"
                 android:layout_height="40mm"
                 android:onClick="btnRetry"
                 android:layout_marginTop="50mm"
-                app:cardBackgroundColor="@android:color/holo_red_dark"
                 app:cardCornerRadius="20mm"
                 app:cardElevation="0dp">
 
                 <TextView
+                    android:background="@android:color/white"
                     android:id="@+id/tv_retry"
                     android:layout_width="match_parent"
                     android:layout_height="40mm"
                     android:gravity="center"
-                    android:text="@{vm.statusTitle}"
-                    android:textColor="@android:color/white"
+                    android:text="@{vm.statusBtnStr}"
+                    android:textColor="@android:color/black"
                     android:textSize="16mm" />
 
             </androidx.cardview.widget.CardView>

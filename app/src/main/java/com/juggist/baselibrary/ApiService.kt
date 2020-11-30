@@ -14,7 +14,7 @@ interface ApiService {
     suspend fun getWeekScheduleTeacherInfo(@Body body: RequestBody, @HeaderMap headerMap: HashMap<String,Any>):ResultTest
 
     /**获取指定周有课的教师信息**/
-    @POST("$BASE_URL_PATH/DataSearch/GetCourseScheduleByDate")
+    @POST("$BASE_URL_PATH/DataSearch/GetCourseScheduleByDate/s")
     suspend fun getCourseScheduleByDate(@Body body: RequestBody, @HeaderMap headerMap: HashMap<String,Any>):ResultTest
 
     /**获取指定周有课的教师信息**/

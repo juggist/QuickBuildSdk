@@ -20,7 +20,7 @@
         <activity android:name=".DBVMActivity" />
 <!--        <activity android:name=".TwoActivity" />-->
         <activity android:name=".DatabindActivity" />
-        <activity android:name=".TwoActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

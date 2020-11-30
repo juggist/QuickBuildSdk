@@ -17,6 +17,7 @@ abstract class LoadingStatusDBVMFragment<VM: LoadingStatusViewModel,DB : ViewDat
     protected lateinit var loadingChildDataBind : DB
     protected lateinit var loadingChildView : View
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //初始化子view的databind
@@ -24,18 +25,18 @@ abstract class LoadingStatusDBVMFragment<VM: LoadingStatusViewModel,DB : ViewDat
         loadingChildDataBind.lifecycleOwner = this
         //通过databind,获取子view对象
         loadingChildView = loadingChildDataBind.root
-
         //把子view添加到当前父容器中
         if (loading_status_content_view.childCount > 0) {
             loading_status_content_view.removeAllViews()
         }
         loading_status_content_view.addView(loadingChildView)
-
+        initConfiguration()
         initData()
     }
 
     open fun initData(){
         //通过databind绑定数据(loaidng&status的数据)
+        dataBinding.vm = viewModel
         if(showLoading){
             showLoading(showContent)
             startLoadingAction()
@@ -48,7 +49,7 @@ abstract class LoadingStatusDBVMFragment<VM: LoadingStatusViewModel,DB : ViewDat
      * 展示loading
      */
     fun showLoading(contentShow:Boolean) {
-//        viewModel.showLoading(contentShow)
+        viewModel.showLoading(contentShow)
     }
 
     /**
@@ -83,6 +84,10 @@ abstract class LoadingStatusDBVMFragment<VM: LoadingStatusViewModel,DB : ViewDat
     }
 
 
+    /**
+     * 初始化配置
+     */
+    abstract fun initConfiguration()
     /**
      * 触发初始化行为
      */
