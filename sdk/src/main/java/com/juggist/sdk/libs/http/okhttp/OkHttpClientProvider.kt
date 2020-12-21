@@ -39,8 +39,8 @@ internal object OkHttpClientProvider {
         //log打印级别，决定了log显示的详细程度
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        return OkHttpClient.Builder() //添加拦截器
-            .addInterceptor(logInterceptor)
+        val bulider = OkHttpClient.Builder()
+        bulider.addInterceptor(logInterceptor)
             .addInterceptor(PublicParamsInterceptor()) //设置一个自动管理cookies的管理器
             .addInterceptor(EncryptInterceptor())
 //            .cookieJar(CookiesManager()) //添加网络连接器
@@ -48,8 +48,10 @@ internal object OkHttpClientProvider {
             .connectTimeout(NetWorkManager.getConfig().connectTimeout, TimeUnit.SECONDS)
             .writeTimeout(NetWorkManager.getConfig().writeTimeout, TimeUnit.SECONDS)
             .readTimeout(NetWorkManager.getConfig().readTimeout, TimeUnit.SECONDS)
-            .cache(Cache(NetWorkManager.getConfig().cacheDirectory, 10 * 1024 * 1024)) //设置缓存
             .retryOnConnectionFailure(true) //自动重试
-            .build()
+        if (NetWorkManager.getConfig().useCache) {
+            bulider.cache(Cache(NetWorkManager.getConfig().cacheDirectory, 10 * 1024 * 1024)) //设置缓存
+        }
+        return bulider.build()
     }
 }

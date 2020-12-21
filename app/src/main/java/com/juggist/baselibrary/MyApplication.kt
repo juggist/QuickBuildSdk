@@ -26,15 +26,6 @@ class MyApplication : BaseApplication(BuildConfig.APPLICATION_ID) {
                 Log.i("Juggist","toast  : thread Name = ${Thread.currentThread().name} ; message = $str")
             }
 
-        }).addParamsProvider(object :ParamsProvider{
-            override fun bodyParams(): HashMap<String, String>? {
-                return null
-            }
-
-            override fun headerParams(): HashMap<String, String>? {
-                return hashMapOf("ticket" to "852e6cde69824177935cfd497c28aedd","Content-Type" to "application/json")
-            }
-
         }).build()
 //        NetWorkManager.init(juggConfig,"")
         NetWorkManager.init(juggConfig,"http://mgr-api-test.jronline.com/")

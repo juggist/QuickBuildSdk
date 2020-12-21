@@ -38,6 +38,8 @@ class NetWorkConfig private constructor(builder: Builder) {
 
     var cacheDirectory : File
 
+    var useCache : Boolean = false
+
     var toastProvider : ToastProvider ?= null
     var loadingProvider : LoadingProvider ?= null
 
@@ -64,6 +66,7 @@ class NetWorkConfig private constructor(builder: Builder) {
         toastProvider = builder.toastProvider
         loadingProvider = builder.loadingProvider
         mContext = builder.mContext
+        useCache = builder.useCache
     }
 
 
@@ -89,6 +92,7 @@ class NetWorkConfig private constructor(builder: Builder) {
 
         internal var toastProvider : ToastProvider ?= null
         internal var loadingProvider : LoadingProvider ?= null
+        internal var useCache : Boolean = false
         /**
          * 添加吐司
          */
@@ -145,6 +149,14 @@ class NetWorkConfig private constructor(builder: Builder) {
             this.isDebug = isDebug
             return this
         }
+
+
+        fun isUseCache(useCache : Boolean):Builder{
+            this.useCache = useCache
+            return this
+        }
+
+
 
         fun build():NetWorkConfig{
             if (cacheDirectory == null){
