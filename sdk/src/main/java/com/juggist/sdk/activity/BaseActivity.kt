@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 /**
  */
-abstract class BaseActivity constructor(private val layoutId: Int) : AppCompatActivity() {
+abstract class BaseActivity constructor(private val layoutId: Int) : FontSizeActivity() {
     protected val TAG = this.javaClass.name
     protected lateinit var rootView: View
     override fun onCreate(savedInstanceState: Bundle?) {
