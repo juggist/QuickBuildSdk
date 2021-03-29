@@ -16,7 +16,7 @@ import java.lang.reflect.ParameterizedType
  * 使用 databinding & viewModel 模式绑定activity
  * 需要注入databinding & viewModel 类型
  */
-abstract class BaseDBVMActivity<VM : BaseViewModel,DB : ViewDataBinding> (private val layoutId: Int) : AppCompatActivity() {
+abstract class BaseDBVMActivity<VM : BaseViewModel,DB : ViewDataBinding> (private val layoutId: Int) : FontSizeActivity() {
     protected val TAG = this.javaClass.name
     protected lateinit var rootChildDataBind: DB//派生类传入的databind类型，在派生类中，必须用此对象进行数据绑定(rootChildDataBind.xx = viewModel)
     protected lateinit var rootView: View
